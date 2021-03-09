@@ -1,0 +1,251 @@
+:root {
+    --rojo: #e50914;
+    --fondo: #141414;
+}
+
+/*Reinicia los estilos por defecto del navegador*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--fondo); /*Utiliza el color guardado en la variable*/
+    font-family: 'Open Sans', sans-serif;
+}
+
+.contenedor {
+    width: 90%;
+    margin: auto;
+}
+
+header {
+    /*padding arriba y abajo de 30px y de izquierda a derecha por defecto*/
+    padding: 30px 0;
+}
+
+header .contenedor{
+    display: flex; /*para poner el logotipo a la izquierda y el menu a la derecha*/
+    justify-content: space-between; /*Espacio entre el contenido*/
+    align-items: center; /*centrar elementos en vertical*/
+}
+
+header .logotipo {
+    font-family: 'Bebas Neue', cursive;
+    font-weight: normal;
+    color: var(--rojo);
+    font-size: 40px;
+}
+
+header nav a{
+    color: #aaa;
+    text-decoration: none; /*Elimina los subrayados*/
+    margin-right: 20px;
+}
+
+header nav a:hover,
+header nav a.activo{
+    color: #fff;
+}
+
+/*-----------Pelicula principal -----------*/
+
+.pelicula-principal {
+    /*Se trabaja con medidas emrem*/
+    /*font size 16px, min height 650px, para calcular medidas em sera:
+    ** 650/16=40.62 -> será la medida em 40.62em */
+    font-size: 16px;
+    min-height: 40.62em;
+    color: #fff;
+    /*Se impone un gradiente de colores a la imagen seleccionada*/
+    background: linear-gradient(rgba(0,0,0,.50) 0%, rgba(0,0,0,.50) 100%), url(../img/backdrop.jpg);
+    background-position: center center; /*Centra arriba y abajo la imagen*/
+    background-size: cover; /*La imagen tendra tamaño 100% adapatado*/
+    margin-bottom: 3.12em; /*50px magin, 16px font-size -> 50/16=3.12*/
+    display: flex; /*Los textos se quieren poner hacia abajo*/
+    align-items: flex-end; /*Los elementos quedarán en la parte de abajo*/
+
+}
+.pelicula-principal .contenedor{
+    margin: 0 auto;
+    margin-bottom: 6.25em; /*100px/16px=6.25em*/
+}
+
+.pelicula-principal .titulo {
+    font-weight: 600;
+    font-size: 3.12em;/*50px/16px*/
+    margin-bottom: 0.4em; /*20px/50px=0.4*/
+}
+
+.pelicula-principal .descripcion {
+    font-weight: normal;
+    font-size: 1em; /*16px = 1em*/
+    line-height: 1.75em;
+    max-width: 50%;
+    margin-bottom: 1.25em; /*20/16=1.25em*/
+}
+
+.pelicula-principal .boton {
+    background: rgba(0,0,0,.50);
+    border: none;
+    border-radius: 0.31em;
+    padding: 0.93em 1.87em; /*15px arriba y abajo, 30px izquierda y derecha */
+    color: #fff;
+    margin-right: 1.25em; /*20px*/
+    cursor: pointer;
+    transition: .3s ease all; /*cambiar el color con efecto*/
+    font-size: 1.12em;
+}
+
+.pelicula-principal .boton:hover{
+    background: #fff;
+    color: #000;
+
+}
+
+.pelicula-principal .boton i{
+    margin-right: 1.25em;
+}
+
+/*----------Contenedor del titulo y controles---------*/
+.contenedor-titulo-controles{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.contenedor-titulo-controles h3{
+    color: #fff;
+    font-size: 30px;
+}
+
+.contenedor-titulo-controles .indicadores button{
+    background: #fff;
+    height: 3px;
+    width: 10px;
+    cursor: pointer;
+    border: none;
+    margin-right: 2px;
+}
+
+.contenedor-titulo-controles .indicadores button:hover,
+.contenedor-titulo-controles .indicadores button.activo {
+    background: var(--rojo);
+}
+
+/*--------------- Contenedor principal y flechas ----------*/
+.peliculas-recomendadas {
+    margin-bottom: 70px;
+}
+
+.peliculas-recomendadas .contenedor-principal {
+    display:flex; /*En forma horizontal*/
+    align-items: center; /*Elementos centrados*/
+    position: relative; /*Para acomodar las flechas sera necesario*/
+}
+
+.peliculas-recomendadas .contenedor-principal .flecha-izquierda,
+.peliculas-recomendadas .contenedor-principal .flecha-derecha {
+    position: absolute;
+    border: none;
+    background: rgba(0,0,0,.3);
+    font-size: 40px;
+    height: 50%;
+    top: calc(50% - 25%);
+    line-height: 40px;
+    width: 50px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 500;
+    transition: .2s ease all;
+}
+
+.peliculas-recomendadas .contenedor-principal .flecha-izquierda:hover,
+.peliculas-recomendadas .contenedor-principal .flecha-derecha:hover {
+    background:rgba(0,0,0,.9);
+}
+
+/*Posiciona las flechas en cada lado*/
+.peliculas-recomendadas .contenedor-principal .flecha-izquierda{
+    left: 0;
+}
+.peliculas-recomendadas .contenedor-principal .flecha-derecha{
+    right: 0;
+}
+
+
+
+/*--------------Carousel -------------------*/
+.peliculas-recomendadas .contenedor-carousel {
+    width: 100%;
+    padding: 20px 0;
+    overflow: hidden; /*Aquellos elementos que pasan del tamaño, estarán ocultos*/
+    scroll-behavior: smooth; /*Comportamiento del Scroll*/
+}
+.peliculas-recomendadas .contenedor-carousel .carousel{
+    display: flex;
+    flex-wrap: nowrap;/*Las imagenes estarán a la izquierda y derecha seguidas*/
+}
+
+.peliculas-recomendadas .contenedor-carousel .carousel .pelicula{
+    min-width: 20%;
+    transition: .3s ease all;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+
+}
+
+.peliculas-recomendadas .contenedor-carousel .carousel .pelicula.hover{
+    transform: scale(1.2);
+    transform-origin: center;
+}
+
+
+.peliculas-recomendadas .contenedor-carousel .carousel .pelicula img{
+    width:100%;
+    vertical-align: top;
+}
+
+
+/*-------------- Medias Queries ---------------*/
+
+@media screen and (max-width: 800px ){
+    header .logotipo {
+        margin-bottom: 10px;
+        font-size: 30px;
+    }
+
+    header .contenedor {
+        flex-direction: column;/*cambia de formato horizontal a vertical*/
+        text-align: center;
+    }
+
+    .pelicula-principal {
+        /*Gracias a esto, como se ha trabajado en em cambiara tamaños*/
+        font-size: 14px; 
+    }
+
+    .pelicula-principal .descripcion {
+        max-width: 100%;
+    }
+
+    .peliculas-recomendadas .contenedor-carousel {
+        overflow: visible;
+    }
+
+    /*Deja de ser carousel y se vuelve una GRID*/
+    .peliculas-recomendadas .contenedor-carousel .carousel{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas de 1 fraccion, mismo tamaño cada una*/
+        gap: 20px;
+    }
+    /*Se ocultan elementos de la GRID*/
+    .peliculas-recomendadas .indicadores,
+    .peliculas-recomendadas .flecha-izquierda,
+    .peliculas-recomendadas .flecha-derecha{
+        display: none;
+    }
+
+
+
+}
